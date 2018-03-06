@@ -3,6 +3,7 @@ import sys
 import rospy
 from cloud_v2.srv import call
 
+
 def local_client(service,action):
     rospy.wait_for_service('bridge_service')
     try:
@@ -17,3 +18,4 @@ if __name__ == "__main__":
     action = str(sys.argv[2])
     print "request "+service+' '+action
     print " %s"%(local_client(service,action))
+    
