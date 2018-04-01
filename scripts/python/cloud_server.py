@@ -24,7 +24,7 @@ def service_start(service):
     if service == 'addition':
         os.system('rosrun smartcar addtwointserver.py')
     elif service == 'stereo_proc':
-        os.system('rosrun cloud_v2 qos.py')
+        os.system('roslaunch mycamera stereo_proc.launch')
     elif service == 'teleop':
         os.system('rosrun turtlesim turtle_teleop_key')
     elif service == 'monitor':
@@ -58,6 +58,9 @@ def cloud_service(service,action):
         return "all services stoping"
     else:
         return 'action error!'
+@app.errorhandler(404)
+def not_found(e):
+    return render_template("404.html")
 
 if __name__ == '__main__':
     app.run(host=cloud_ip, port=5566, threaded=True)

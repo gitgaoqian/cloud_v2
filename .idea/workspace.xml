@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34785b86-cc71-49b9-8169-bd07a4c04ce0" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/scripts/python/qos.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/launch/stereo_client.launch" afterPath="" />
       <change beforePath="$PROJECT_DIR$/scripts/python/bridge.py" afterPath="$PROJECT_DIR$/scripts/python/bridge.py" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/client.py" afterPath="$PROJECT_DIR$/scripts/python/client.py" />
       <change beforePath="$PROJECT_DIR$/scripts/python/clientlib.py" afterPath="$PROJECT_DIR$/scripts/python/clientlib.py" />
       <change beforePath="$PROJECT_DIR$/scripts/python/cloud_server.py" afterPath="$PROJECT_DIR$/scripts/python/cloud_server.py" />
-      <change beforePath="$PROJECT_DIR$/scripts/stop.sh" afterPath="$PROJECT_DIR$/scripts/stop.sh" />
+      <change beforePath="$PROJECT_DIR$/scripts/python/qos.py" afterPath="$PROJECT_DIR$/scripts/python/qos.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,15 +18,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="clientlib.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="clientlib.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/python/clientlib.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+            <state relative-caret-position="621">
+              <caret line="60" column="22" lean-forward="false" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
               <folding>
                 <element signature="e#24#81#1" expanded="false" />
-                <element signature="e#824#1213#0" expanded="false" />
-                <element signature="e#1251#1440#0" expanded="false" />
+                <element signature="e#299#392#0" expanded="false" />
+                <element signature="e#474#746#0" expanded="false" />
+                <element signature="e#860#1238#0" expanded="false" />
+                <element signature="e#1276#1465#0" expanded="false" />
+                <element signature="e#2641#2828#0" expanded="false" />
+                <element signature="e#2866#3016#0" expanded="false" />
+                <element signature="e#3056#3198#0" expanded="false" />
+                <element signature="e#3238#3424#0" expanded="false" />
+                <element signature="e#3475#3718#0" expanded="false" />
+                <element signature="e#3898#4537#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -36,12 +43,12 @@
       <file leaf-file-name="bridge.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/python/bridge.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1728">
-              <caret line="65" column="14" lean-forward="true" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
+            <state relative-caret-position="378">
+              <caret line="54" column="58" lean-forward="false" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
               <folding>
                 <element signature="n#!!doc" expanded="false" />
                 <element signature="e#46#58#0" expanded="true" />
-                <element signature="e#2813#2955#0" expanded="false" />
+                <element signature="e#3051#3193#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -50,8 +57,8 @@
       <file leaf-file-name="cloud_server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="24" column="55" lean-forward="true" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
+            <state relative-caret-position="-701">
+              <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
               <folding>
                 <element signature="e#24#81#1" expanded="false" />
                 <element signature="e#83#95#0" expanded="true" />
@@ -60,13 +67,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="qos.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="qos.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/python/qos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            <state relative-caret-position="108">
+              <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
               <folding>
-                <element signature="e#66#78#0" expanded="true" />
+                <element signature="e#57#69#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,9 +82,11 @@
       <file leaf-file-name="bridge_bf_2.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/python/bridge_bf_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="36" column="48" lean-forward="false" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="48" />
-              <folding />
+            <state relative-caret-position="-1215">
+              <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+              <folding>
+                <element signature="e#2967#3492#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,7 +111,30 @@
       <find>img_pub_rate</find>
       <find>cloud_ip</find>
       <find>pre_rate</find>
+      <find>qos_level</find>
+      <find>rospy</find>
+      <find>pub_lef</find>
+      <find>pub_left</find>
+      <find>pub_hand_left_gesture</find>
+      <find>shutdown</find>
+      <find>cloud_service</find>
+      <find>30</find>
+      <find>50</find>
+      <find>100</find>
+      <find>180</find>
+      <find>rtt_mid</find>
+      <find>rtt_low</find>
+      <find>rtt_high</find>
+      <find>netspeed_low</find>
+      <find>netspeed_mid</find>
+      <find>netspeed_high</find>
     </findStrings>
+    <replaceStrings>
+      <replace>rtt_low</replace>
+      <replace>rtt_mid</replace>
+      <replace>rtt_high</replace>
+      <replace>netspeed_high</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -119,25 +151,29 @@
         <option value="$USER_HOME$/python/pythonweb/rtt_distribution.py" />
         <option value="$PROJECT_DIR$/scripts/python/dynamic_reconfigure.py" />
         <option value="$PROJECT_DIR$/scripts/python/bridgebf.py" />
-        <option value="$PROJECT_DIR$/scripts/python/clientlib.py" />
         <option value="$PROJECT_DIR$/../base_control/publisher.py" />
         <option value="$PROJECT_DIR$/scripts/python/config.py" />
         <option value="$PROJECT_DIR$/scripts/python/Bridge.py" />
-        <option value="$PROJECT_DIR$/scripts/python/bridge.py" />
-        <option value="$PROJECT_DIR$/scripts/python/cloud_server.py" />
         <option value="$PROJECT_DIR$/scripts/python/test2.py" />
         <option value="$PROJECT_DIR$/scripts/python/utils.py" />
-        <option value="$PROJECT_DIR$/scripts/python/test.py" />
         <option value="$PROJECT_DIR$/scripts/python/third.py" />
+        <option value="$PROJECT_DIR$/scripts/python/subscriber.py" />
+        <option value="$PROJECT_DIR$/scripts/python/cloud_server.py" />
+        <option value="$PROJECT_DIR$/scripts/python/speedtest.py" />
+        <option value="$PROJECT_DIR$/scripts/python/test.py" />
+        <option value="$PROJECT_DIR$/scripts/python/round.py" />
+        <option value="$PROJECT_DIR$/scripts/python/qosrefer.py" />
         <option value="$PROJECT_DIR$/scripts/python/qos.py" />
+        <option value="$PROJECT_DIR$/scripts/python/bridge.py" />
+        <option value="$PROJECT_DIR$/scripts/python/clientlib.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="249" />
-    <option name="y" value="126" />
-    <option name="width" value="1398" />
-    <option name="height" value="992" />
+    <option name="x" value="111" />
+    <option name="y" value="124" />
+    <option name="width" value="1685" />
+    <option name="height" value="956" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -175,22 +211,17 @@
               <item name="scripts" type="462c0819:PsiDirectoryNode" />
               <item name="python" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="cloud_v2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cloud_v2" type="462c0819:PsiDirectoryNode" />
-              <item name="srv" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../base_control/publisher.py" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="last_opened_file_path" value="$USER_HOME$/qt_files/qt_gui/waiguge.py" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -204,8 +235,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.test">
-    <configuration name="cloud_server" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.round">
+    <configuration name="clientlib" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -217,7 +248,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="cloud_v2" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/python/cloud_server.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/python/clientlib.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -241,6 +272,42 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="round" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="cloud_v2" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/python/round.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="speedtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/python" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="cloud_v2" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/python/speedtest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -259,55 +326,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="cloud_v2" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/python/test2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="third" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/scripts/python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="cloud_v2" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scripts/python/third.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.cloud_server" />
-      <item index="1" class="java.lang.String" itemvalue="Python.qos" />
-      <item index="2" class="java.lang.String" itemvalue="Python.test2" />
-      <item index="3" class="java.lang.String" itemvalue="Python.test" />
-      <item index="4" class="java.lang.String" itemvalue="Python.third" />
+      <item index="0" class="java.lang.String" itemvalue="Python.test" />
+      <item index="1" class="java.lang.String" itemvalue="Python.clientlib" />
+      <item index="2" class="java.lang.String" itemvalue="Python.qos" />
+      <item index="3" class="java.lang.String" itemvalue="Python.speedtest" />
+      <item index="4" class="java.lang.String" itemvalue="Python.round" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.test" />
-        <item index="1" class="java.lang.String" itemvalue="Python.third" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test2" />
-        <item index="3" class="java.lang.String" itemvalue="Python.cloud_server" />
+        <item index="0" class="java.lang.String" itemvalue="Python.round" />
+        <item index="1" class="java.lang.String" itemvalue="Python.test" />
+        <item index="2" class="java.lang.String" itemvalue="Python.speedtest" />
+        <item index="3" class="java.lang.String" itemvalue="Python.clientlib" />
         <item index="4" class="java.lang.String" itemvalue="Python.qos" />
       </list>
     </recent_temporary>
@@ -329,25 +360,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="-4" width="1857" height="1084" extended-state="6" />
+    <frame x="111" y="124" width="1859" height="1092" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18847604" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1637049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36298567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36298567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36196318" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -370,7 +401,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="96" />
+      <option name="time" value="104" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -379,19 +410,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/python/clientlib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="77" column="13" lean-forward="false" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
-          <folding>
-            <element signature="e#24#81#1" expanded="false" />
-            <element signature="e#824#1213#0" expanded="false" />
-            <element signature="e#1251#1440#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/pyfiles/tts.py" />
     <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1458">
@@ -420,53 +438,7 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#46#58#0" expanded="true" />
-            <element signature="e#2813#2955#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/bridgebf.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/python/clientlib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2079">
-          <caret line="77" column="13" lean-forward="false" selection-start-line="77" selection-start-column="13" selection-end-line="77" selection-end-column="13" />
-          <folding>
-            <element signature="e#24#81#1" expanded="false" />
-            <element signature="e#824#1213#0" expanded="false" />
-            <element signature="e#1251#1440#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1458">
-          <caret line="62" column="52" lean-forward="false" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../base_control/publisher.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="22" column="26" lean-forward="false" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/qos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="26" selection-end-line="13" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/bridge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="42" column="60" lean-forward="false" selection-start-line="42" selection-start-column="60" selection-end-line="42" selection-end-column="60" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#46#58#0" expanded="true" />
-            <element signature="e#2813#2955#0" expanded="false" />
+            <element signature="e#3051#3193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -501,7 +473,7 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#46#58#0" expanded="true" />
-            <element signature="e#2813#2955#0" expanded="false" />
+            <element signature="e#3051#3193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -512,8 +484,16 @@
           <caret line="50" column="11" lean-forward="true" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="11" />
           <folding>
             <element signature="e#24#81#1" expanded="false" />
-            <element signature="e#824#1213#0" expanded="false" />
-            <element signature="e#1251#1440#0" expanded="false" />
+            <element signature="e#299#392#0" expanded="false" />
+            <element signature="e#474#746#0" expanded="false" />
+            <element signature="e#860#1238#0" expanded="false" />
+            <element signature="e#1276#1465#0" expanded="false" />
+            <element signature="e#2641#2828#0" expanded="false" />
+            <element signature="e#2866#3016#0" expanded="false" />
+            <element signature="e#3056#3198#0" expanded="false" />
+            <element signature="e#3238#3424#0" expanded="false" />
+            <element signature="e#3475#3718#0" expanded="false" />
+            <element signature="e#3898#4537#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -525,7 +505,7 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#46#58#0" expanded="true" />
-            <element signature="e#2813#2955#0" expanded="false" />
+            <element signature="e#3051#3193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -551,7 +531,7 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#46#58#0" expanded="true" />
-            <element signature="e#2813#2955#0" expanded="false" />
+            <element signature="e#3051#3193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -570,7 +550,7 @@
           <folding>
             <element signature="n#!!doc" expanded="false" />
             <element signature="e#46#58#0" expanded="true" />
-            <element signature="e#2813#2955#0" expanded="false" />
+            <element signature="e#3051#3193#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -581,13 +561,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../base_control/subscriber.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -634,58 +607,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/bridge_bf_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="36" column="48" lean-forward="false" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/bridge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1728">
-          <caret line="65" column="14" lean-forward="true" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="e#46#58#0" expanded="true" />
-            <element signature="e#2813#2955#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/clientlib.py">
+    <entry file="file://$PROJECT_DIR$/scripts/python/test2.py" />
+    <entry file="file://$PROJECT_DIR$/scripts/python/third.py" />
+    <entry file="file://$PROJECT_DIR$/scripts/python/utils.py" />
+    <entry file="file://$PROJECT_DIR$/scripts/python/subscriber.py" />
+    <entry file="file://$PROJECT_DIR$/../base_control/subscriber.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
-          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server_bf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="24" column="55" lean-forward="false" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/speedtest.py" />
+    <entry file="file://$PROJECT_DIR$/scripts/python/test.py" />
+    <entry file="file://$PROJECT_DIR$/scripts/python/round.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/bridge_bf_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1215">
+          <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
           <folding>
-            <element signature="e#24#81#1" expanded="false" />
-            <element signature="e#824#1213#0" expanded="false" />
-            <element signature="e#1251#1440#0" expanded="false" />
+            <element signature="e#2967#3492#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/test2.py">
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/imNEU_main11.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="179">
+          <caret line="524" column="26" lean-forward="false" selection-start-line="524" selection-start-column="18" selection-end-line="524" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/third.py">
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/waiguge1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="270">
+          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/waiguge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4320">
+          <caret line="164" column="29" lean-forward="false" selection-start-line="164" selection-start-column="29" selection-end-line="164" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/qosrefer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="62" column="26" lean-forward="true" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
+          <folding>
+            <element signature="e#58#70#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/qos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="23" column="36" lean-forward="true" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <element signature="e#57#69#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="24" column="55" lean-forward="true" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
+        <state relative-caret-position="-701">
+          <caret line="29" column="30" lean-forward="false" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding>
             <element signature="e#24#81#1" expanded="false" />
             <element signature="e#83#95#0" expanded="true" />
@@ -693,31 +700,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/utils.py">
+    <entry file="file://$PROJECT_DIR$/scripts/python/bridge.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="5" column="16" lean-forward="false" selection-start-line="5" selection-start-column="16" selection-end-line="5" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/qos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        <state relative-caret-position="378">
+          <caret line="54" column="58" lean-forward="false" selection-start-line="54" selection-start-column="58" selection-end-line="54" selection-end-column="58" />
           <folding>
-            <element signature="e#66#78#0" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#46#58#0" expanded="true" />
+            <element signature="e#3051#3193#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/clientlib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="621">
+          <caret line="60" column="22" lean-forward="false" selection-start-line="60" selection-start-column="22" selection-end-line="60" selection-end-column="22" />
+          <folding>
+            <element signature="e#24#81#1" expanded="false" />
+            <element signature="e#299#392#0" expanded="false" />
+            <element signature="e#474#746#0" expanded="false" />
+            <element signature="e#860#1238#0" expanded="false" />
+            <element signature="e#1276#1465#0" expanded="false" />
+            <element signature="e#2641#2828#0" expanded="false" />
+            <element signature="e#2866#3016#0" expanded="false" />
+            <element signature="e#3056#3198#0" expanded="false" />
+            <element signature="e#3238#3424#0" expanded="false" />
+            <element signature="e#3475#3718#0" expanded="false" />
+            <element signature="e#3898#4537#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
