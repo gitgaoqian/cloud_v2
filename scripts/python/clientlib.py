@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Apr 12 08:52:21 2017
+updated on Wed Apr 12 08:52:21 2018
 
 @author: ros
 """
@@ -9,6 +9,8 @@ import os
 import time
 import math
 import re
+import rospy
+from threading import Thread
 
 startaction=['start','startall']
 stopaction=['stop','stopall','list']
@@ -28,24 +30,26 @@ def cloud_service_request(url):
         print r.text
     return r.text
                                     #--------------QOS Fuction---------------------#
-#---ping监控时延和丢包,RttMonitor和PackerLossMonitor是之前分别写的检测函数，现在把这两个因素都放在一个函数里：PingCheck
-def RttMonitor(cloud_ip):
-    file = os.popen('ping -c 10 -i 0.4' + ' ' + cloud_ip + ' ' + ' | grep "rtt" | cut -d " " -f 4')
-    rtt = file.read().strip('\n')
-    if rtt != '':
-        list = rtt.split('/',3)
-        time_list = []
-        for x in range(len(list)):
-            time_list.append(float(list[x]))
-        adv_rtt = time_list[1]
-    else:
-        adv_rtt = 150 #用较大的值来表示网络断开
-    return adv_rtt
-def PacketLossMonitor(cloud_ip):
-    count=os.popen('ping -c 10 -i 0.4'+' '+cloud_ip+' '+' | grep "received" | cut -d "," -f 2| cut -d " " -f 2')
-    num=count.read()
-    packet_loss=(20-int(num))*100/20
-    return packet_loss
+
+#------------------------------QOS---------------------------------------------
+#5-14:QoS程序分为两部分:1 因素的检测 2 qos的计算
+#
+def get_total_tx_bytes(interface):
+    r = os.popen('ifconfig ' + interface + ' | grep "TX bytes"').read()
+    total_bytes = re.sub('(.+:)| \(.+', '', r)
+    return int(total_bytes)
+def get_total_rx_bytes(interface):
+    r = os.popen('ifconfig ' + interface + ' | grep "RX bytes"').read()
+    total_bytes = re.sub(' \(.+', '', r)
+    total_bytes = re.sub('.+?:', '', total_bytes)
+    return int(total_bytes)
+def NetSpeedCheck(interface,direction,cycle):
+    get_total_bytes = get_total_tx_bytes if direction == 'tx' else get_total_rx_bytes
+    last = get_total_bytes(interface)
+    time.sleep(cycle)
+    delta = get_total_bytes(interface) - last
+    netspeed = delta /cycle / 1000
+    return netspeed
 def PingCheck(cloud_ip):
     popen_file = os.popen('ping -c 10 -i 0.4' + ' ' + cloud_ip )
     result= popen_file.read()
@@ -71,160 +75,106 @@ def PingCheck(cloud_ip):
         mdev_rtt = time_list[2]
     loss_and_rtt = [packetloss,adv_rtt,mdev_rtt]
     return loss_and_rtt
-
-#---------------------------iperf监控带宽,netperf监控吞吐量,ifconig间接测网速------------------------#
-#iperf测带宽必须在没有应用占据网络的前提下,测得是极限带宽,所以在此处不适合;netperf测得是吞吐量但是它在应用中时而能用时而不能;ifconfig测网速为目前所用
-def BwMonitor(cloud_ip):
-    file = os.popen('iperf -c '+cloud_ip+' '+'-f M -t 5'+' | grep "sec"') #仅对单线程
-    list = file.read().split("  ")
-    list_new = list[4].split(" ")
-    bw = float(list_new[0])
-    return bw
-def ThroughputMonitor(cloud_ip):
-    file = os.popen('netperf -H ' + cloud_ip + ' -l 2 | grep "2.00"')
-    list = file.read().split()
-    throughput = float(list[4])
-    return throughput
-def get_total_tx_bytes(interface):
-    r = os.popen('ifconfig ' + interface + ' | grep "TX bytes"').read()
-    total_bytes = re.sub('(.+:)| \(.+', '', r)
-    return int(total_bytes)
-def get_total_rx_bytes(interface):
-    r = os.popen('ifconfig ' + interface + ' | grep "RX bytes"').read()
-    total_bytes = re.sub(' \(.+', '', r)
-    total_bytes = re.sub('.+?:', '', total_bytes)
-    return int(total_bytes)
-def NetSpeedCheck(interface,direction,cycle):
-    get_total_bytes = get_total_tx_bytes if direction == 'tx' else get_total_rx_bytes
-    last = get_total_bytes(interface)
-    time.sleep(cycle)
-    delta = get_total_bytes(interface) - last
-    netspeed = delta / cycle / 1000
-    return netspeed
-
+def TopicHzCheck():
+    # hz = os.popen("python rostopic.py | grep average")
+    # list = hz.read().strip("\n").split(" ")
+    # rdst = float(list[2])
+    # return rdst
+    file = os.popen("python rostopic.py")
+    while 1:
+        hz = file.readline()
+        # print hz
+        if "rate" in hz:#确保能够读到第一个出现的rate数据
+            file.read()  # 把剩余的内容读完,不然会报错
+            list = hz.strip("\n").split(" ")
+            rdst = float(list[2])
+            break
+        if not hz: #如果读完了,还没有rate信息
+            rdst = 0
+            break
+    return rdst
+def CompressRateCheck():
+    param = rospy.get_param("camera/left/image/compressed")
+    cur_quality = param["jpeg_quality"]
+    return cur_quality
 #--------------------------计算qos等级----------------------------#
-#QosRTT函数是通过rtt直接判断qos_level,现在使用QosScore函数是先通过rtt判断qos_score,然后通过qos_score去判断qos_level
-def QosRTT(cloud_ip):
-    [packet_loss,avg,mdev] = PingCheck(cloud_ip)
-    sdev = math.sqrt(mdev)
-    #bw = BwMonitor(cloud_ip)
-    #throughput = ThrouthputMonitor(cloud_ip)
-    thread_1 = 50
-    thread_2 = 100
-    thread_3 = 200
-    qoslevel = 1
+def QosRTT(cloud_ip):#单考虑rtt的qos_score;暂定tg:10ms,tb:150ms.设tg=0.1*tc;tc可以近似用最大rdst的倒数表示,比如云端最快处理能力是10hz,
+    # 也就是说完成一次任务最少用时是0.1s,我们就用这个值评估我们的tc,那么tg近似设为10ms.tb的设置应该综合考虑,既要从云端比本地用时少考虑,又得保持
+    #基本的处理能力,比如我们允许最低的频率为6hz,也就是处理一次任务的时间是0.15s,但是如果rtt就超过这个值,即使它用时比本地少,我们也认为是差的.]
+    [packet_loss,adv,mdev] = PingCheck(cloud_ip)
+    Tg = 10
+    Tb = 100
+    if adv <= Tg:
+        Qt = 100
+    elif adv<=Tb:
+        Qt = (Tb-adv)/(Tb-Tg)*100
+    else:
+        Qt = 0
+    if Qt < 0:
+        Qt = 0
+    return [packet_loss,adv,Qt]
+def QosHz():#单考虑hz的qos score
+    rsrc = rospy.get_param("/camera/camera_splite/src_rate") #获取源图像发布频率
+    #print "rsrc:"+str(rsrc)
+    rdst = TopicHzCheck()
+    Qr = float(rdst)/rsrc*100
+    if Qr > 100:
+        Qr = 100
+    return [rdst,Qr]
+def QosCompressed():
+    pre_quality = 80
+    cur_quality = CompressRateCheck()
+    Qs = float(cur_quality)/pre_quality*100
+    return [cur_quality,Qs]
+def QosWeight(cloud_ip): #计算最终的加权Qos,并且求3次平均值
+    #设置权重
+    Wt = 0.6
+    Wr = 0.3
+    Ws = 0.1
+    Qt = 0
+    Qr = 0
+    Qs = 0
+    Q = 0
+    packet_loss =0
+    rtt =0
+    rdst = 0
+    cur_quality = 0
+    netspeed = 0
+    for i in range(5):
+        speed = NetSpeedCheck("wlan0","rx",2)
+        netspeed = netspeed + speed
+        [r,Qrr] = QosHz()
+        [loss,adv,Qtt] = QosRTT(cloud_ip)
+        [compress,Qss] = QosCompressed()
+        packet_loss = packet_loss + loss  # 求5次packet_loss平均值
+        rtt = rtt + adv #求5次rtt平均值
+        rdst = rdst + r #求5次rdst平均值
+        cur_quality = cur_quality + compress
+        Qt = Qt + Qtt
+        Qr = Qr + Qrr
+        Qs = Qs + Qss
+        Q = Q + Wt*Qtt + Wr*Qrr + Ws*Qss#求5次Q平均值
+    result = [netspeed/5,rtt/5,rdst/5,cur_quality/5,Qt/5,Qr/5,Qs/5,Q/5]
+    return result
     #给一个初始值，否则申请云端服务会出现：UnboundLocalError: local variable “qoslevel” referenced before assignment？(变量赋值前没有定义)
     #按理说不会出现这种错误的啊？
-    if packet_loss > 10:
-        qoslevel = 4            # 切换服务到本地
-    elif avg<= thread_1:
-        qoslevel = 1
-    elif thread_1 < avg <= thread_2:
-        qoslevel = 2
-    elif thread_2<avg<=thread_3:
-        qoslevel = 3
-    elif thread_3<avg:
-        qoslevel = 4
-    return qoslevel
-def QosScore(interface,cloud_ip,lastscore):
-    rtt_high = 100
-    rtt_mid = 50
-    rtt_low = 30
-    netspeed_high = 240
-    netspeed_mid = 200
-    netspeed_low =150
-    qos_score = lastscore
-    last_score = lastscore
-    [packetloss,advrtt,mdevrtt]=PingCheck(cloud_ip)
-    netspeed = NetSpeedCheck(interface,direction = 'tx',cycle=2)
-    if packetloss > 10:
-        qos_score = 55
-    else:
-        qos_level = QosLevel(last_score)
-        if qos_level == 1:
-            if advrtt < rtt_low and netspeed > netspeed_high:
-                qos_score = last_score + 2
-            if rtt_low < advrtt < rtt_mid or netspeed_mid < netspeed < netspeed_high:
-                qos_score = last_score - 1
-            if rtt_mid < advrtt < rtt_high or netspeed_low < netspeed < netspeed_mid:
-                qos_score = last_score - 2
-            if advrtt > rtt_high or netspeed < netspeed_low:
-                qos_score = last_score -3
-        if qos_level == 2:
-            if advrtt < rtt_low and netspeed > netspeed_high:
-                qos_score = last_score + 1
-            if rtt_low < advrtt < rtt_mid or netspeed_mid < netspeed < netspeed_high:
-                qos_score = 78
-            if rtt_mid < advrtt < rtt_high or netspeed_low < netspeed < netspeed_mid:
-                qos_score = last_score - 1
-            if advrtt > rtt_high or netspeed < netspeed_low:
-                qos_score = last_score - 2
-        if qos_level == 3:
-            if advrtt < rtt_low and netspeed > netspeed_high:
-                qos_score = last_score + 2
-            if rtt_low < advrtt < rtt_mid or netspeed_mid < netspeed < netspeed_high:
-                qos_score = last_score + 1
-            if rtt_mid < advrtt < rtt_high or netspeed_low < netspeed < netspeed_mid:
-                qos_score = 65
-            if advrtt > rtt_high or netspeed < netspeed_low:
-                qos_score = last_score - 1
-        if qos_level == 4:
-            if advrtt < rtt_low and netspeed > netspeed_high:
-                qos_score = last_score + 3
-            if rtt_low < advrtt < rtt_mid or netspeed_mid < netspeed < netspeed_high:
-                qos_score = last_score +2
-            if rtt_mid < advrtt < rtt_high or netspeed_low < netspeed < netspeed_mid:
-                qos_score = last_score + 1
-            if advrtt > rtt_high or netspeed < netspeed_low:
-                qos_score = last_score -1
-        if qos_score > 100:
-            qos_score = 100
-        if qos_score < 55:
-            qos_score = 55
-    result = [packetloss,advrtt,netspeed,qos_score]
-    return result
-def QosLevel(qos_score):
+def QosLevel(qos_score):#5-15:每个等级只占15, 每个Q等级占据的太小了,所以更改方案,Q=1,占据20;Q=2占据20,Q=3占据20
     qos_level = 1
-    if 85 < qos_score < 100:
+    if 80 < qos_score < 100:
         qos_level = 1
-    elif  70 < qos_score <= 85:
+    elif  60 < qos_score <= 80:
         qos_level = 2
-    elif 60 < qos_score <= 70:
+    elif 40 < qos_score <= 60:
         qos_level = 3
-    elif qos_score <= 60:
+    elif qos_score <= 40:
         qos_level = 4
     return qos_level
 
-#另一种得到qos_level的方法,分别考虑rtt和netspeed,单一情况对应的level,然后进行加权得到新的level,包含了16种情况,这种方法简单,但是qos_level会有跳变.
-def QosLevelInquire(interface,cloud_ip,a,b):# interface是检测网速的网络名称;cloud_ip是云主机的ip;a,b是rtt和netspeed的权值.
-    [packetloss, advrtt, mdevrtt] = PingCheck(cloud_ip)
-    rtt = advrtt
-    netspeed = NetSpeedCheck(interface,direction = 'tx',cycle=2)
-    if packetloss > 10:
-        rtt_level = 4
-        netspeed_level = 4
-    else:
-        if rtt <= 30:
-            rtt_level = 1
-        elif rtt <= 50:
-            rtt_level = 2
-        elif rtt <= 100:
-            rtt_level = 3
-        else:
-            rtt_level = 4
-        if netspeed >= 180:
-            netspeed_level = 1
-        elif netspeed >= 150:
-            netspeed_level = 2
-        elif netspeed >= 100:
-            netspeed_level = 3
-        else:
-            netspeed_level = 4
-    qos_level = round(a*rtt_level + b*netspeed_level) #a,b是权值
-    return qos_level
 #-----------测试主函数---------------#
-# if __name__ == "__main__":
-#     # cloud_ip = "192.168.1.102"
-#     # #[packet_loss,adv_rtt] = PingCheck(cloud_ip)
-#     # qos_level = Qos(cloud_ip)
-#     # print packet_loss
+if __name__ == "__main__":
+    # rdst= TopicHzCheck()
+    # print rdst
+    QosCompressed()
+    #[packet_loss,adv_rtt] = PingCheck(cloud_ip)
+    #qos_level = Qos(cloud_ip)
+    #print packet_loss

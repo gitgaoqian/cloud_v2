@@ -13,3 +13,9 @@ cloud_v2包包含了云端服务程序和本地运行程序
 services : list startall stopall
 
 service(stereo_proc addition ...)：start stop
+
+更新在2018-4-23:
+1 cloudserver.py中增加了验证,服务查询等功能,并且实现的是在docker容器启动服务节点.整个程序包装成了一个类
+2 clientclib.py程序,更改了QoS部分,包括权重计算算法,因子检测程序<包括rtt,rdst,netspeed>.
+
+之前的程序标记为xx_bf.py

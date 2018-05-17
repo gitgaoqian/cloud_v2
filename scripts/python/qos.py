@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+'''
+updated on 2018-4-23
+'''
 #ping监控时延,
 import rospy
 import thread
@@ -10,32 +13,37 @@ qos_level = 1
 if "CLOUD_IP" not in os.environ:
     print "Can't find environment variable CLOUD_IP."
     sys.exit(1)
-cloud_ip = os.environ['CLOUD_IP']
+cloud_ip = "192.168.1.101"
 def QosMonitor(cloud_ip):
     global  qos_level
-    last_score = 100 #初始qos_score
-    interface = 'wlan1'
+    #interface = 'wlan1'
     while 1:
         #qos_level = client.Qos(cloud_ip)
-        # 实时记录rtt,netspeed,qos_score 和 qos_level从而来绘制qos动态图
-        [packetloss,rtt,netspeed,qos_score] = client.QosScore(interface,cloud_ip,last_score)
-        last_score = qos_score
-        qos_level = client.QosLevel(qos_score)
-        rtt_txt = open('/home/ubuntu/qos/rtt.txt','a+')
-        netspeed_txt = open('/home/ubuntu/qos/netspeed.txt','a+')
-        qos_level_txt = open('/home/ubuntu/qos/qos_level.txt','a+')
-        qos_score_txt = open('/home/ubuntu/qos/qos_score.txt', 'a+')
-        packetloss_txt = open('/home/ubuntu/qos/packetloss.txt','a+')
-        rtt_txt.write(str(rtt)+'\n')
+        # 实时记录rtt,rdst,qos_score 和 qos_level从而来绘制qos动态图
+        #[rdst,qos_score] = client.QosScoreHz()
+        [netspeed,rtt,rdst,cur_quality,Qt,Qr,Qs,Q] = client.QosWeight(cloud_ip)
+        qos_level = client.QosLevel(Q)
+        netspeed_txt = open('/home/ros/qos/netspeed.txt', 'a+')
+        rtt_txt = open('/home/ros/qos/rtt.txt','a+')
+        rdst_txt = open('/home/ros/qos/rdst.txt','a+')
+        compress_txt = open('/home/ros/qos/compress.txt','a+')
+        qos_level_txt = open('/home/ros/qos/qos_level.txt','a+')
+        qos_score_txt = open('/home/ros/qos/qos_score.txt', 'a+')
         netspeed_txt.write(str(netspeed)+'\n')
-        qos_score_txt.write(str(qos_score)+'\n')
+        rtt_txt.write(str(rtt)+'\n')
+        rdst_txt.write(str(rdst)+'\n')
+        compress_txt.write(str(cur_quality)+'\n')
+        qos_score_txt.write(str(Q)+'\n')
         qos_level_txt.write(str(qos_level)+'\n')
-        packetloss_txt.write(str(packetloss)+'\n')
-        print "packetloss: "+str(packetloss)
+        print "netspeed: "+str(netspeed)
         print "rtt:  "+str(rtt)
-        print "netspeed:  "+str(netspeed)
-        print "qos_score:  "+str(qos_score)
+        print "rdst:  "+str(rdst)
+        print "Qt: " + str(Qt)
+        print "Qr: " + str(Qr)
+        print "Qs: " + str(Qs)
+        print "Q:  "+ str(Q)
         print "qos_level:  "+str(qos_level)
+        print "\n"
 def Andjust():
     global cloud_ip
     rospy.init_node('QOS', anonymous=True)
@@ -44,23 +52,29 @@ def Andjust():
     thread.start_new_thread(QosMonitor, (cloud_ip,))
     while not rospy.is_shutdown():
         if qos_level == 1:
-            #print "qos_level:1"
+            # print "qos_level:1"
+            time.sleep(1)
             ChangeQuality(pre_quality)
             ChangeRate(pre_rate)
-        elif qos_level == 2:  # change the rate of ros publisher with the qos mechanism
-            # print "qos_level:2,change the rate"
-            cur_rate = pre_rate / 2
-            ChangeQuality(pre_quality)
-            ChangeRate(cur_rate)
-        elif qos_level == 3:  # 2 decrease the compressed rate
-            # print "qos_level:3,stop some services"
+        elif qos_level == 2:  # 2 decrease the compressed rate
+
+            #print "qos_level:2,change the compressed rate"
             cur_quality = pre_quality / 2
+            ChangeRate(pre_rate)
             ChangeQuality(cur_quality)
+        elif qos_level == 3:  # change the rate of ros publisher with the qos mechanism
+            # print "qos_level:3,change the published rate"
+            cur_rate = 6
+            cur_quality = pre_quality/2
+            ChangeQuality(cur_quality)
+            ChangeRate(cur_rate)
+        elif qos_level == 4:
+            time.sleep(1)
 def ChangeQuality(quality):
     os.system("rosrun dynamic_reconfigure dynparam set /camera/left/image/compressed jpeg_quality "+str(quality))
     os.system("rosrun dynamic_reconfigure dynparam set /camera/right/image/compressed jpeg_quality "+str(quality))
 def ChangeRate(rate):
-    rospy.set_param("img_pub_rate",rate)           
+    rospy.set_param("/camera/camera_splite/src_rate",rate)
 if __name__ == '__main__':
     try:
         Andjust()

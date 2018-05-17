@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+'''
+updated on 2018-4-23
+'''
 import rospy
 from cloud_v2.srv import call
 import clientlib as bridge_client
@@ -25,9 +28,8 @@ def QosMonitor(cloud_ip):
 	interface = 'wlan1'
 	while 1:#改为通过百分制评估qos等级 2018-3-25
 		#qos_level = bridge_client.Qos(cloud_ip)
-		[packetloss, advrtt, netspeed, qos_score] = bridge_client.QosScore(interface,cloud_ip,last_score)
-		last_score = qos_score
-		qos_level = bridge_client.QosLevel(qos_score)
+		[netspeed, rtt, rdst, cur_quality, Qt, Qr, Qs, Q] = bridge_client.QosWeight(cloud_ip)
+		qos_level = bridge_client.QosLevel(Q)
 def Switch(service,action):
 #if request service start or services startall,encouter to switch circle
 	global exit_flag
@@ -83,7 +85,6 @@ def handle_request(data):
 		url=cloud_service_port+"/cloud_service/"+service+"/"+action
 		bridge_client.cloud_service_request(url)
 	return 'received the service request'
-
 def bridge_server():
 	rospy.init_node('bridge_server')
 	rospy.Service('bridge_service', call, handle_request)

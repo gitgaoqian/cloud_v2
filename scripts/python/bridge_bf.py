@@ -12,7 +12,7 @@ cloud_ip = os.environ['CLOUD_IP']
 cloud_service_port = 'http://'+cloud_ip+':5566'
 ros_ip = os.environ['ROS_IP']
 ros_master_uri = 'http://'+ros_ip+':11311'
-services=[] #store the request service 
+services=[] #store the request service
 startaction=['start','startall']
 stopaction=['stop','stopall','list']
 exit_flag = 0 #each thread has a common exit flag:exit_flag
@@ -21,9 +21,14 @@ dic = {} # dic:value;dic is exit_flag_name;vlaue is 0 or 1
 qos_level = 1 # qos leve:1--4
 def QosMonitor(cloud_ip):
 	global qos_level
-	while 1:
-		qos_level = bridge_client.Qos(cloud_ip)
-def Qos(service,action):
+	last_score = 100
+	interface = 'wlan1'
+	while 1:#改为通过百分制评估qos等级 2018-3-25
+		#qos_level = bridge_client.Qos(cloud_ip)
+		[packetloss, advrtt, netspeed, qos_score] = bridge_client.QosScore(interface,cloud_ip,last_score)
+		last_score = qos_score
+		qos_level = bridge_client.QosLevel(qos_score)
+def Switch(service,action):
 #if request service start or services startall,encouter to switch circle
 	global exit_flag
 	global dic
@@ -33,7 +38,6 @@ def Qos(service,action):
 	exit_flag_name = service+'_exit_flag'
 	dic[exit_flag_name]=0
 	switch_flag = -1
-	pre_rate = 10.0
 	thread.start_new_thread(QosMonitor,(cloud_ip,))
 	url = cloud_service_port + "/cloud_service/" + service + "/" + action
 	while 1:
@@ -45,28 +49,14 @@ def Qos(service,action):
 			else:
 				switch_flag = 0  # local servie start status
 				localservice.local_service(service,action) #start service or startall services firstly in local
-		#-------QOS MECHANISM--------#
+		#-------SWITCH MECHANISM--------#
 		if switch_flag == 1:  # qos mechanism  work when cloud service start
-			if qos_level == 1:
-				print "qos_level:1"
-				os.system("rosparam set img_pub_rate " + str(pre_rate))
-				time.sleep(1)
-			elif qos_level == 2:	#1 change the rate of ros publisher with the qos mechanism
-				print "qos_level:2,change the rate"
-				cur_rate = pre_rate/2
-				os.system("rosparam set img_pub_rate "+str(cur_rate))
-				time.sleep(1)
-			elif qos_level == 3:	# 2 stop some services that are not important
-				print "qos_level:3,decrease the compress rate"
-				os.system("rosrun dynamic_reconfigure dynparam set /camera/left/image/compressed jpeg_quality 30")
-				os.system(" rosrun dynamic_reconfigure dynparam set /camera/right/image/compressed jpeg_quality 30")
-				time.sleep(1)
 			if qos_level == 4: #switch to local service
 				print 'qos_level:4,switch to local service'
 				switch_flag = 0  # local servie start status
 				localservice.local_service(service,action) #start local service
 				time.sleep(1)
-		if switch_flag==0:
+		if switch_flag == 0:
 			if qos_level != 4: #switch to cloud service
 				print 'switch to cloud service'
 				switch_flag = 1
@@ -82,7 +72,7 @@ def handle_request(data):
 	service=data.service_name
 	action=data.action_name
 	if action in startaction:
-		thread.start_new_thread(Qos,(service,action))
+		thread.start_new_thread(Switch,(service,action))
 		return 'received the service request '
 	elif action in stopaction:
 		if action == 'stopall':
