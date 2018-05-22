@@ -69,7 +69,7 @@ def Andjust():
             ChangeQuality(cur_quality)
             ChangeRate(cur_rate)
         elif qos_level == 4:
-            time.sleep(1)
+            os.system('sh ~/catkin_ws/src/cloud_v2/scripts/stop.sh stereo_proc')
 def ChangeQuality(quality):
     os.system("rosrun dynamic_reconfigure dynparam set /camera/left/image/compressed jpeg_quality "+str(quality))
     os.system("rosrun dynamic_reconfigure dynparam set /camera/right/image/compressed jpeg_quality "+str(quality))
