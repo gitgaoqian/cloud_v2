@@ -21,6 +21,6 @@ service(stereo_proc addition ...)：start stop
 之前的程序标记为xx_bf.py
 
 2018-5-24：更改存储服务的URI形式
-@app.route('/cloud_service/<service>/<action>',methods=['POST'])
+@app.route('/cloud_service/(service)/(action)',methods=['POST'])
 改为：
-@app.route('/compute/<service>/<action>',methods=['POST'])
+@app.route('/compute/(service)/(action)',methods=['POST'])
