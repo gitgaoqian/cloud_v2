@@ -41,7 +41,7 @@ def Switch(service,action):
 	dic[exit_flag_name]=0
 	switch_flag = -1
 	thread.start_new_thread(QosMonitor,(cloud_ip,))
-	url = cloud_service_port + "/cloud_service/" + service + "/" + action
+	url = cloud_service_port + "/compute/" + service + "/" + action
 	while 1:
 		#initial the service
 		if switch_flag == -1:

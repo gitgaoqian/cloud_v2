@@ -19,3 +19,8 @@ service(stereo_proc addition ...)：start stop
 2 clientclib.py程序,更改了QoS部分,包括权重计算算法,因子检测程序<包括rtt,rdst,netspeed>.
 
 之前的程序标记为xx_bf.py
+
+2018-5-24：更改存储服务的URI形式
+@app.route('/cloud_service/<service>/<action>',methods=['POST'])
+改为：
+@app.route('/compute/<service>/<action>',methods=['POST'])

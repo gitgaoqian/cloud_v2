@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-updated at 2018-4-19
-
+created on 2018-5-24
+CloudROSServer.py目的将计算服务和存储服务合二为一，统一到一个服务器下，各自维护相应的URI.计算服务和存储服务的程序还各自放在原来的包。
 @author: ros
 """
 import flask
@@ -23,16 +23,15 @@ port = 5566
 
 class CloudROS():
     def __init__(self):
-        # 运行云端服务器
-        app.run(host=cloud_ip, port=port, threaded=True)
-        # threaded = True:开启app路由多线程并发,可以同时处理多个http请求，即路由函数可以同时执行
-        # threaded = False:开启app路由单线程，一次只能处理一个http请求
-        #连接本地数据库,并创建游标
+        #连接计算服务数据库,并创建游标
         self.conn = mdb.connect(host="127.0.0.1", user="root", db="CloudROS", passwd="ubuntu", charset="utf8")
         self.cur = self.conn.cursor()
-        #路由uri
+        #连接存储服务数据库
+        self.storeconn = mdb.connect(host="127.0.0.1", user="root", db="NeuExo", passwd="ubuntu", charset="utf8")
+        self.storecur = self.storeconn.cursor()
+        #路由计算服务URI
         @app.route('/compute/<service>/<action>', methods=['POST'])
-        def ServiceHandler(service,action):#负责具体的服务流程以及返回提示信息到用户
+        def ComputeServiceHandler(service,action):#负责具体的服务流程以及返回提示信息到用户
             usr_ip = flask.request.remote_addr
             token = usr_ip
             is_auth = self.IsAuth(token)#首先进行身份验证
@@ -45,6 +44,39 @@ class CloudROS():
                     return "service not exit!"
                 else:#对该用户申请的服务进行具体操作
                     return self.ServiceOperation(usr_ip=usr_ip,service=service,action=action)
+        #路由存储服务URI
+        @app.route('/storage/<robotID>/<action>', methods=['POST'])
+        def StoreServiceHandler(robotID,action):
+            token = flask.request.remote_addr
+            store_is_auth = self.StoreIsAuth(token)  # 首先进行身份验证
+            if not store_is_auth:  # 验证失败
+                return "Auth failed,the exo/monitor has no access to the cloud"
+            self.ROSNetworkConfig()
+            if action == "store":
+                is_exo = self.IsExoInExoSum(robotID)  # 查看ExoSum中有没有请求的Exo
+                if not is_exo:  # 如果没有,创建表,并将该Exo信息插入到ExoSum中
+                    self.CreateExoID(robotID)
+                    self.InsertExoSum(robotID)
+                else:  # 如果ExoSum中有Exo信息,首先清空ExoID的旧的历史数据,然后进行新的数据存储
+                    self.ClearExoID(robotID)
+                StoreThd = Thread(target=self.StoreData, args=(robotID,))
+                StoreThd.start()
+                return "Store Exo_" + robotID + " data"
+            elif action == "fetch":
+                is_exo = self.IsExoInExoSum(robotID)
+                if not is_exo:
+                    return "No table exo" + str(robotID) + " for fetch"
+                else:
+                    FetchThd = Thread(target=self.FetchData, args=(robotID,))
+                    FetchThd.start()
+                    return "Fetch Exo_" + robotID + " data"
+            else:
+                return action + " not permitted! for monitor,action=fetch;for exo,action=store"
+        # 运行云端服务器
+        app.run(host=cloud_ip, port=port, threaded=True)
+        # threaded = True:开启app路由多线程并发,可以同时处理多个http请求，即路由函数可以同时执行
+        # threaded = False:开启app路由单线程，一次只能处理一个http请求
+    #计算服务相关函数
     def IsAuth(self,token):
         # 此处设置token为ip,判断ip处于的子网段是否在数据库CloudROS的token表中
         subnet = str((IPy.IP(token).make_net('255.255.255.0')))#找到ip在的网段ex:192.168.1.0/24
@@ -122,5 +154,61 @@ class CloudROS():
     def UpdateUsrInfo(self,usr_ip,service,status):
         self.cur.execute("update usr_info set status=%s  where usr_ip=%s and service=%s",(status,usr_ip,service))
         self.conn.commit()
+    #存储服务相关函数
+    def StoreIsAuth(self,token):
+        # 此处设置token为ip,判断ip处于的子网段是否在数据库NeuExo的token表中
+        subnet = str((IPy.IP(token).make_net('255.255.255.0')))#找到ip在的网段ex:192.168.1.0/24
+        rows = self.storecur.execute("select * from token where token=%s", subnet)
+        if rows == 0:
+            return False
+        else:
+            return True
+    def IsExoInExoSum(self, robotID):
+        rows = self.storecur.execute("select * from exo_sum where id=%s", (robotID))
+        if rows == 0:
+            return False
+        else:
+            return True
+    def InsertExoSum(self, robotID):
+        self.storecur.execute("insert into exo_sum values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", (robotID,None,None,None,None,
+                                                                                        None,None,None,None,None))
+        self.storeconn.commit()
+    def CreateExoID(self,robotID):
+        self.storecur.execute("create table exo_"+str(robotID)+" (count int,leftk float,lefth float,"
+                                                         "rightk float,righth float,temp float,hum float,"
+                                                         "atmo float,longitude float,latitude float)")
+    def ClearExoID(self,robotID):
+        self.storecur.execute("truncate table exo_"+robotID)
+        self.storeconn.commit()
+    def StoreAndFetch(self,robotID,action):
+        if action == "store":
+            is_exo = self.IsExoInExoSum(robotID)  # 查看ExoSum中有没有请求的Exo
+            if not is_exo:  # 如果没有,创建表,并将该Exo信息插入到ExoSum中
+                self.CreateExoID(robotID)
+                self.InsertExoSum(robotID)
+            else:  # 如果ExoSum中有Exo信息,首先清空ExoID的旧的历史数据,然后进行新的数据存储
+                self.ClearExoID(robotID)
+            StoreThd = Thread(target=self.StoreData,args=(robotID,))
+            StoreThd.start()
+            return "Store Exo_" + robotID + " data"
+        elif action == "fetch":
+            is_exo = self.IsExoInExoSum(robotID)
+            if not is_exo:
+                return "No table exo" + str(robotID) + " for fetch"
+            else:
+                FetchThd = Thread(target=self.FetchData,args = (robotID,))
+                FetchThd.start()
+                return "Fetch Exo_" + robotID + " data"
+        else:
+            return action + " not permitted! for monitor,action=fetch;for exo,action=store"
+    def ROSNetworkConfig(self):
+        ros_master_ip = flask.request.remote_addr
+        ros_master_uri = 'http://' + ros_master_ip + ':11311'
+        os.environ['ROS_MASTER_URI'] = ros_master_uri
+        os.environ['ROS_IP'] = cloud_ip
+    def StoreData(self, robotID):
+        os.system('rosrun neu_wgg store_service.py '+robotID+" __name:=StoreService"+robotID)
+    def FetchData(self, robotID):
+        os.system('rosrun neu_wgg fetch_service.py ' + robotID+" __name:=FetchService"+robotID)
 if __name__ == '__main__':
     cloudros = CloudROS()

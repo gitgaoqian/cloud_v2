@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="34785b86-cc71-49b9-8169-bd07a4c04ce0" name="Default" comment="">
+    <list default="true" id="34785b86-cc71-49b9-8169-bd07a4c04ce0" name="Default" comment="update on 2018-5-23">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/launch/stereo_client.launch" afterPath="" />
       <change beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
+      <change beforePath="$PROJECT_DIR$/scripts/QoSSub.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/scripts/python/ComputAndStorageServer.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/scripts/python/QosClass.py" afterPath="" />
       <change beforePath="$PROJECT_DIR$/scripts/python/bridge.py" afterPath="$PROJECT_DIR$/scripts/python/bridge.py" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/bridge_bf_1.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/bridge_bf_2.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/bridge_refer_1.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/bridge_refer_2.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/client.py" afterPath="$PROJECT_DIR$/scripts/python/client.py" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/clientlib.py" afterPath="$PROJECT_DIR$/scripts/python/clientlib.py" />
       <change beforePath="$PROJECT_DIR$/scripts/python/cloud_server.py" afterPath="$PROJECT_DIR$/scripts/python/cloud_server.py" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/cloud_server_bf.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/localservicelib.py" afterPath="$PROJECT_DIR$/scripts/python/localservicelib.py" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/qos.py" afterPath="$PROJECT_DIR$/scripts/python/qos.py" />
-      <change beforePath="$PROJECT_DIR$/scripts/python/qosrefer.py" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,68 +19,77 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="clientlib.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/python/clientlib.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="157" column="17" lean-forward="true" selection-start-line="157" selection-start-column="17" selection-end-line="157" selection-end-column="17" />
-              <folding>
-                <element signature="e#82#97#0" expanded="true" />
-                <element signature="e#341#434#0" expanded="false" />
-                <element signature="e#516#788#0" expanded="false" />
-                <element signature="e#945#1087#0" expanded="false" />
-                <element signature="e#1127#1313#0" expanded="false" />
-                <element signature="e#1364#1606#0" expanded="false" />
-                <element signature="e#1636#2574#0" expanded="false" />
-                <element signature="e#2599#3120#0" expanded="false" />
-                <element signature="e#3150#3268#0" expanded="false" />
-                <element signature="e#3442#3853#0" expanded="false" />
-                <element signature="e#3887#4094#0" expanded="false" />
-                <element signature="e#4120#4246#0" expanded="false" />
-                <element signature="e#4496#4971#0" expanded="false" />
-                <element signature="e#5280#5520#0" expanded="false" />
-                <element signature="e#5587#5749#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rostopic.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/scripts/python/rostopic.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="27">
-              <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="cloud_server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
+            <state relative-caret-position="96">
+              <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
               <folding>
                 <element signature="e#301#366#0" expanded="false" />
-                <element signature="e#472#1519#0" expanded="false" />
-                <element signature="e#1556#1856#0" expanded="false" />
-                <element signature="e#1898#2066#0" expanded="false" />
-                <element signature="e#2120#2302#0" expanded="false" />
-                <element signature="e#2365#4068#0" expanded="false" />
-                <element signature="e#4119#4618#0" expanded="false" />
-                <element signature="e#4680#4812#0" expanded="false" />
-                <element signature="e#4863#5096#0" expanded="false" />
-                <element signature="e#5165#5294#0" expanded="false" />
+                <element signature="e#1550#1850#0" expanded="false" />
+                <element signature="e#1892#2060#0" expanded="false" />
+                <element signature="e#2114#2296#0" expanded="false" />
+                <element signature="e#2359#4062#0" expanded="false" />
+                <element signature="e#4113#4612#0" expanded="false" />
+                <element signature="e#4674#4806#0" expanded="false" />
+                <element signature="e#4857#5090#0" expanded="false" />
+                <element signature="e#5159#5288#0" expanded="false" />
+                <element signature="e#5348#5480#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cloud_server_bf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server_bf.py">
+      <file leaf-file-name="CloudROSServer.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/python/CloudROSServer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+            <state relative-caret-position="324">
+              <caret line="47" column="28" lean-forward="false" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+              <folding>
+                <element signature="e#378#443#0" expanded="false" />
+                <element signature="e#1067#1590#0" expanded="false" />
+                <element signature="e#1739#3038#0" expanded="false" />
+                <element signature="e#3283#3583#0" expanded="false" />
+                <element signature="e#3625#3793#0" expanded="false" />
+                <element signature="e#3847#4029#0" expanded="false" />
+                <element signature="e#4092#5795#0" expanded="false" />
+                <element signature="e#5846#6345#0" expanded="false" />
+                <element signature="e#6407#6539#0" expanded="false" />
+                <element signature="e#6590#6823#0" expanded="false" />
+                <element signature="e#6892#7021#0" expanded="false" />
+                <element signature="e#7081#7213#0" expanded="false" />
+                <element signature="e#7269#7572#0" expanded="false" />
+                <element signature="e#7619#7780#0" expanded="false" />
+                <element signature="e#7826#8086#0" expanded="false" />
+                <element signature="e#8130#8433#0" expanded="false" />
+                <element signature="e#8185#8432#0" expanded="false" />
+                <element signature="e#8476#8560#0" expanded="false" />
+                <element signature="e#8613#9568#0" expanded="false" />
+                <element signature="e#9609#9806#0" expanded="false" />
+                <element signature="e#9849#9934#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bridge.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/python/bridge.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="47" column="53" lean-forward="true" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+              <folding>
+                <element signature="e#2477#3005#0" expanded="false" />
+                <element signature="e#3028#3170#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/readme.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="469">
+              <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -105,9 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>time</find>
-      <find>qoslevel</find>
-      <find>img_pub_rate</find>
       <find>cloud_ip</find>
       <find>pre_rate</find>
       <find>qos_level</find>
@@ -135,6 +133,9 @@
       <find>class</find>
       <find>run</find>
       <find>def run</find>
+      <find>servicehandler</find>
+      <find>Thread</find>
+      <find>service not</find>
     </findStrings>
     <replaceStrings>
       <replace>rtt_low</replace>
@@ -187,24 +188,27 @@
         <option value="$USER_HOME$/python/pythonweb/python-web/requestsasclient/test.py" />
         <option value="$APPLICATION_HOME_DIR$/MyFiles/function/higherfunction.py" />
         <option value="$PROJECT_DIR$/scripts/python/bridge_bf.py" />
-        <option value="$PROJECT_DIR$/scripts/python/cloud_server.py" />
         <option value="$PROJECT_DIR$/scripts/python/ping.py" />
         <option value="$PROJECT_DIR$/scripts/python/pingtest.py" />
         <option value="$PROJECT_DIR$/scripts/python/clientlib_bf.py" />
-        <option value="$PROJECT_DIR$/scripts/python/qos.py" />
         <option value="$PROJECT_DIR$/scripts/python/clientlib.py" />
         <option value="$PROJECT_DIR$/scripts/python/ComputAndStorageServer.py" />
         <option value="$PROJECT_DIR$/scripts/python/QtRequset.py" />
         <option value="$PROJECT_DIR$/scripts/python/cloud_server_bf.py" />
+        <option value="$PROJECT_DIR$/scripts/python/qos.py" />
+        <option value="$PROJECT_DIR$/../neu_wgg/scripts/python/monitor-3/cloud_server3.py" />
+        <option value="$PROJECT_DIR$/scripts/python/CloudROSServer.py" />
+        <option value="$PROJECT_DIR$/scripts/python/cloud_server.py" />
         <option value="$PROJECT_DIR$/scripts/python/bridge.py" />
+        <option value="$PROJECT_DIR$/readme.md" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-27" />
-    <option name="y" value="270" />
-    <option name="width" value="1681" />
-    <option name="height" value="940" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="229" />
+    <option name="y" value="90" />
+    <option name="width" value="1679" />
+    <option name="height" value="932" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -224,7 +228,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,12 +251,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/MyFiles/QtGUI" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../neu_wgg/scripts/python/monitor-3/cloud_server3.py" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -388,16 +392,24 @@
       <option name="presentableId" value="Default" />
       <updated>1516362934051</updated>
     </task>
+    <task id="LOCAL-00001" summary="update on 2018-5-23">
+      <created>1526996562090</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1526996562090</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="-4" width="1857" height="1084" extended-state="6" />
+    <frame x="229" y="90" width="1679" height="932" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12385568" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1369863" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36298567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36298567" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -415,6 +427,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update on 2018-5-23" />
+    <option name="LAST_COMMIT_MESSAGE" value="update on 2018-5-23" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -437,7 +453,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="124" />
+      <option name="time" value="125" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -446,53 +462,12 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/python/round.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/python/bridge_bf_2.py" />
-    <entry file="file://$USER_HOME$/qt_files/qt_gui/imNEU_main11.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="524" column="26" lean-forward="false" selection-start-line="524" selection-start-column="18" selection-end-line="524" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/qt_files/qt_gui/waiguge1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="10" column="10" lean-forward="true" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/qt_files/qt_gui/tempeture_monitor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-163">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/qt_files/qt_gui/step_motor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-76">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/qt_files/qt_gui/monitor_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="68" column="49" lean-forward="true" selection-start-line="68" selection-start-column="49" selection-end-line="68" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/tempeture_monitor.py" />
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/step_motor.py" />
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/monitor_test.py" />
     <entry file="file://$PROJECT_DIR$/scripts/python/qosrefer.py" />
     <entry file="file://$PROJECT_DIR$/scripts/python/QoSSub.py" />
     <entry file="file://$PROJECT_DIR$/scripts/python/test.py" />
-    <entry file="file://$PROJECT_DIR$/scripts/python/QosClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-243">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/python/hztest.py" />
     <entry file="file://$USER_HOME$/Docker/turtlesim/Dockerfile">
       <provider selected="true" editor-type-id="text-editor">
@@ -508,13 +483,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -522,13 +490,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/singletest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/singletest.py" />
     <entry file="file://$USER_HOME$/python/pythonweb/python-web/requestsasclient/server1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="351">
@@ -565,20 +527,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/qt_files/qt_gui/waiguge.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="869">
-          <caret line="217" column="17" lean-forward="false" selection-start-line="217" selection-start-column="17" selection-end-line="217" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/qt_files/qt_gui/exo1226.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="150" column="38" lean-forward="false" selection-start-line="150" selection-start-column="38" selection-end-line="150" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/waiguge.py" />
+    <entry file="file://$USER_HOME$/qt_files/qt_gui/exo1226.py" />
     <entry file="file://$USER_HOME$/python/pythonweb/python-web/requestsasclient/client2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -622,13 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/QoSSub.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/python4-12/bridge_refer_1.py" />
     <entry file="file://$PROJECT_DIR$/scripts/python4-12/clientlib.py" />
     <entry file="file://$PROJECT_DIR$/scripts/python/bridge_refer_1.py" />
@@ -639,7 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2484">
           <caret line="98" column="0" lean-forward="true" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -647,88 +589,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/ping.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/pingtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="783">
-          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/ComputAndStorageServer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/QtRequset.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="23" column="17" lean-forward="false" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-          <folding>
-            <element signature="e#301#366#0" expanded="false" />
-            <element signature="e#472#1519#0" expanded="false" />
-            <element signature="e#1556#1856#0" expanded="false" />
-            <element signature="e#1898#2066#0" expanded="false" />
-            <element signature="e#2120#2302#0" expanded="false" />
-            <element signature="e#2365#4068#0" expanded="false" />
-            <element signature="e#4119#4618#0" expanded="false" />
-            <element signature="e#4680#4812#0" expanded="false" />
-            <element signature="e#4863#5096#0" expanded="false" />
-            <element signature="e#5165#5294#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/ping.py" />
+    <entry file="file://$PROJECT_DIR$/scripts/python/pingtest.py" />
+    <entry file="file://$PROJECT_DIR$/scripts/python/QtRequset.py" />
     <entry file="file://$PROJECT_DIR$/scripts/python/clientlib_bf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
           <caret line="254" column="18" lean-forward="true" selection-start-line="254" selection-start-column="18" selection-end-line="254" selection-end-column="18" />
-          <folding>
-            <element signature="e#3765#3901#0" expanded="false" />
-            <element signature="e#4103#4322#0" expanded="false" />
-            <element signature="e#4362#4489#0" expanded="false" />
-            <element signature="e#4546#5061#0" expanded="false" />
-            <element signature="e#5111#7625#0" expanded="false" />
-            <element signature="e#5464#7555#0" expanded="false" />
-            <element signature="e#5536#5989#0" expanded="false" />
-            <element signature="e#6029#6471#0" expanded="false" />
-            <element signature="e#6511#6953#0" expanded="false" />
-            <element signature="e#6993#7445#0" expanded="false" />
-            <element signature="e#7655#7895#0" expanded="false" />
-            <element signature="e#8141#8855#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/python/clientlib.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="157" column="17" lean-forward="true" selection-start-line="157" selection-start-column="17" selection-end-line="157" selection-end-column="17" />
+        <state relative-caret-position="0">
+          <caret line="157" column="17" lean-forward="false" selection-start-line="157" selection-start-column="17" selection-end-line="157" selection-end-column="17" />
           <folding>
-            <element signature="e#82#97#0" expanded="true" />
+            <element signature="e#82#97#0" expanded="false" />
             <element signature="e#341#434#0" expanded="false" />
             <element signature="e#516#788#0" expanded="false" />
             <element signature="e#945#1087#0" expanded="false" />
@@ -747,43 +626,159 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/bridge.py">
+    <entry file="file://$PROJECT_DIR$/scripts/python/rostopic.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="68" column="17" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="68" selection-end-column="17" />
-          <folding>
-            <element signature="e#1110#2455#0" expanded="false" />
-            <element signature="e#2483#3011#0" expanded="false" />
-            <element signature="e#3034#3176#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="162">
+          <caret line="6" column="15" lean-forward="false" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/stop.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/localservicelib.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="36" column="0" lean-forward="true" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/python/qos.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="51" />
+        <state relative-caret-position="351">
+          <caret line="76" column="58" lean-forward="true" selection-start-line="76" selection-start-column="58" selection-end-line="76" selection-end-column="58" />
           <folding>
             <element signature="e#213#278#0" expanded="false" />
-            <element signature="e#1597#2521#0" expanded="false" />
-            <element signature="e#2554#2778#0" expanded="false" />
-            <element signature="e#2805#2859#0" expanded="false" />
+            <element signature="e#336#1577#0" expanded="false" />
+            <element signature="e#400#1577#0" expanded="false" />
+            <element signature="e#1597#2576#0" expanded="false" />
+            <element signature="e#2609#2833#0" expanded="false" />
+            <element signature="e#2860#2914#0" expanded="false" />
+            <element signature="e#2946#3021#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/QosClass.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-567">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/ComputAndStorageServer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/QoSSub.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-405">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server_bf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
+        <state relative-caret-position="540">
           <caret line="28" column="29" lean-forward="true" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/python/rostopic.py">
+    <entry file="file://$PROJECT_DIR$/../neu_wgg/scripts/python/monitor-3/cloud_server3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="27">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="15" />
+        <state relative-caret-position="366">
+          <caret line="61" column="23" lean-forward="true" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+          <folding>
+            <element signature="e#385#2119#0" expanded="false" />
+            <element signature="e#2156#2454#0" expanded="false" />
+            <element signature="e#2501#2657#0" expanded="false" />
+            <element signature="e#2703#2953#0" expanded="false" />
+            <element signature="e#2997#3295#0" expanded="false" />
+            <element signature="e#3338#3412#0" expanded="false" />
+            <element signature="e#3465#4346#0" expanded="false" />
+            <element signature="e#4387#4584#0" expanded="false" />
+            <element signature="e#4627#4712#0" expanded="false" />
+            <element signature="e#4755#4842#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/CloudROSServer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="47" column="28" lean-forward="false" selection-start-line="47" selection-start-column="28" selection-end-line="47" selection-end-column="28" />
+          <folding>
+            <element signature="e#378#443#0" expanded="false" />
+            <element signature="e#1067#1590#0" expanded="false" />
+            <element signature="e#1739#3038#0" expanded="false" />
+            <element signature="e#3283#3583#0" expanded="false" />
+            <element signature="e#3625#3793#0" expanded="false" />
+            <element signature="e#3847#4029#0" expanded="false" />
+            <element signature="e#4092#5795#0" expanded="false" />
+            <element signature="e#5846#6345#0" expanded="false" />
+            <element signature="e#6407#6539#0" expanded="false" />
+            <element signature="e#6590#6823#0" expanded="false" />
+            <element signature="e#6892#7021#0" expanded="false" />
+            <element signature="e#7081#7213#0" expanded="false" />
+            <element signature="e#7269#7572#0" expanded="false" />
+            <element signature="e#7619#7780#0" expanded="false" />
+            <element signature="e#7826#8086#0" expanded="false" />
+            <element signature="e#8130#8433#0" expanded="false" />
+            <element signature="e#8185#8432#0" expanded="false" />
+            <element signature="e#8476#8560#0" expanded="false" />
+            <element signature="e#8613#9568#0" expanded="false" />
+            <element signature="e#9609#9806#0" expanded="false" />
+            <element signature="e#9849#9934#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/cloud_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="25" column="17" lean-forward="true" selection-start-line="25" selection-start-column="17" selection-end-line="25" selection-end-column="17" />
+          <folding>
+            <element signature="e#301#366#0" expanded="false" />
+            <element signature="e#1550#1850#0" expanded="false" />
+            <element signature="e#1892#2060#0" expanded="false" />
+            <element signature="e#2114#2296#0" expanded="false" />
+            <element signature="e#2359#4062#0" expanded="false" />
+            <element signature="e#4113#4612#0" expanded="false" />
+            <element signature="e#4674#4806#0" expanded="false" />
+            <element signature="e#4857#5090#0" expanded="false" />
+            <element signature="e#5159#5288#0" expanded="false" />
+            <element signature="e#5348#5480#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/python/bridge.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="47" column="53" lean-forward="true" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+          <folding>
+            <element signature="e#2477#3005#0" expanded="false" />
+            <element signature="e#3028#3170#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
         </state>
       </provider>
