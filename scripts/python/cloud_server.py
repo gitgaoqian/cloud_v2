@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-updated at 2018-4-19
+updated at 2018-5-23
+增加了身份验证等预处理操作，计算服务节点置于容器中运行
 
 @author: ros
 """

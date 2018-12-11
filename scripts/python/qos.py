@@ -9,11 +9,13 @@ import thread
 import clientlib as client
 import time
 import os
+import sys
 qos_level = 1
+param
 if "CLOUD_IP" not in os.environ:
     print "Can't find environment variable CLOUD_IP."
     sys.exit(1)
-cloud_ip = "192.168.1.101"
+cloud_ip = "192.168.1.102"
 def QosMonitor(cloud_ip):
     global  qos_level
     #interface = 'wlan1'
@@ -23,12 +25,13 @@ def QosMonitor(cloud_ip):
         #[rdst,qos_score] = client.QosScoreHz()
         [netspeed,rtt,rdst,cur_quality,Qt,Qr,Qs,Q] = client.QosWeight(cloud_ip)
         qos_level = client.QosLevel(Q)
-        netspeed_txt = open('/home/ros/qos/netspeed.txt', 'a+')
-        rtt_txt = open('/home/ros/qos/rtt.txt','a+')
-        rdst_txt = open('/home/ros/qos/rdst.txt','a+')
-        compress_txt = open('/home/ros/qos/compress.txt','a+')
-        qos_level_txt = open('/home/ros/qos/qos_level.txt','a+')
-        qos_score_txt = open('/home/ros/qos/qos_score.txt', 'a+')
+        com_path = '/home/ros/qos/601/unadjust/'
+        netspeed_txt = open(com_path+'netspeed.txt', 'a+')
+        rtt_txt = open(com_path+'rtt.txt','a+')
+        rdst_txt = open(com_path+'rdst.txt','a+')
+        compress_txt = open(com_path+'compress.txt','a+')
+        qos_level_txt = open(com_path+'qos_level.txt','a+')
+        qos_score_txt = open(com_path+'qos_score.txt', 'a+')
         netspeed_txt.write(str(netspeed)+'\n')
         rtt_txt.write(str(rtt)+'\n')
         rdst_txt.write(str(rdst)+'\n')
@@ -47,34 +50,37 @@ def QosMonitor(cloud_ip):
 def Andjust():
     global cloud_ip
     rospy.init_node('QOS', anonymous=True)
-    pre_rate = 10.0
+    pre_rate = 9.3
     pre_quality = 80
     thread.start_new_thread(QosMonitor, (cloud_ip,))
     while not rospy.is_shutdown():
-        if qos_level == 1:
-            # print "qos_level:1"
-            time.sleep(1)
-            ChangeQuality(pre_quality)
-            ChangeRate(pre_rate)
-        elif qos_level == 2:  # 2 decrease the compressed rate
-
-            #print "qos_level:2,change the compressed rate"
-            cur_quality = pre_quality / 2
-            ChangeRate(pre_rate)
-            ChangeQuality(cur_quality)
-        elif qos_level == 3:  # change the rate of ros publisher with the qos mechanism
-            # print "qos_level:3,change the published rate"
-            cur_rate = 6
-            cur_quality = pre_quality/2
-            ChangeQuality(cur_quality)
-            ChangeRate(cur_rate)
-        elif qos_level == 4:
-            os.system('sh ~/catkin_ws/src/cloud_v2/scripts/stop.sh stereo_proc')
+        time.sleep(1)
+        # if qos_level == 1:
+        #     # print "qos_level:1"
+        #     time.sleep(1)
+        #     ChangeQuality(pre_quality)
+        #     ChangeRate(pre_rate)
+        # elif qos_level == 2:  # 2 decrease the compressed rate
+        #     #print "qos_level:2,change the compressed rate"
+        #     cur_quality = pre_quality / 2
+        #     ChangeRate(pre_rate)
+        #     ChangeQuality(cur_quality)
+        # elif qos_level == 3:  # change the rate of ros publisher with the qos mechanism
+        #     # print "qos_level:3,change the published rate"
+        #     cur_rate = 6
+        #     cur_quality = pre_quality/2
+        #     ChangeQuality(cur_quality)
+        #     ChangeRate(cur_rate)
+        # elif qos_level == 4:
+        #     # os.system('sh ~/catkin_ws/src/cloud_v2/scripts/stop.sh stereo_proc')
+        #     time.sleep(1)
 def ChangeQuality(quality):
     os.system("rosrun dynamic_reconfigure dynparam set /camera/left/image/compressed jpeg_quality "+str(quality))
     os.system("rosrun dynamic_reconfigure dynparam set /camera/right/image/compressed jpeg_quality "+str(quality))
 def ChangeRate(rate):
     rospy.set_param("/camera/camera_splite/src_rate",rate)
+    #或者
+    # os.system("rosrun dynamic_reconfigure dynparam set /camera/camera_splite src_rate "+str(rate))
 if __name__ == '__main__':
     try:
         Andjust()

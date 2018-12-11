@@ -18,9 +18,15 @@ service(stereo_proc addition ...)：start stop
 1 cloudserver.py中增加了验证,服务查询等功能,并且实现的是在docker容器启动服务节点.整个程序包装成了一个类
 2 clientclib.py程序,更改了QoS部分,包括权重计算算法,因子检测程序<包括rtt,rdst,netspeed>.
 
-之前的程序标记为xx_bf.py
+之前的程序标记为xx_bf.py,
 
 2018-5-24：更改存储服务的URI形式
 @app.route('/cloud_service/(service)/(action)',methods=['POST'])
 改为：
 @app.route('/compute/(service)/(action)',methods=['POST'])
+
+cloud_server.py cloud-server_bf.py,bridge.py都改过来了,bridge_bf.py没有改过来.
+我们现在做计算实验还是用:bridge.py client.py和cloud-server_bf.py.
+
+2018-? :程序综合
+CloudROSServer.py综合了计算服务和存储服务.

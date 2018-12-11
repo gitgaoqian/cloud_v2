@@ -17,7 +17,7 @@ then
 {
 	rosnode kill /add_two_ints_server
 }
-elif [ $1 = 'keyboard_control' ]
+elif [ $1 = 'teleop' ]
 then
 {
 	rosnode kill /teleop_turtle

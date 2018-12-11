@@ -14,6 +14,7 @@ from threading import Thread
 
 startaction=['start','startall']
 stopaction=['stop','stopall','list']
+interface = os.environ['wlan_name']
 
 #-----------------云端节点的注册-----------------#
 def cloud_param_set(url,master_uri):
@@ -80,7 +81,7 @@ def TopicHzCheck():
     # list = hz.read().strip("\n").split(" ")
     # rdst = float(list[2])
     # return rdst
-    file = os.popen("python rostopic.py")
+    file = os.popen("python /home/ros/catkin_ws/src/cloud_v2/scripts/python/rostopic.py")
     while 1:
         hz = file.readline()
         # print hz
@@ -141,7 +142,7 @@ def QosWeight(cloud_ip): #计算最终的加权Qos,并且求3次平均值
     cur_quality = 0
     netspeed = 0
     for i in range(5):
-        speed = NetSpeedCheck("wlan0","rx",2)
+        speed = NetSpeedCheck(interface,"rx",2)
         netspeed = netspeed + speed
         [r,Qrr] = QosHz()
         [loss,adv,Qtt] = QosRTT(cloud_ip)

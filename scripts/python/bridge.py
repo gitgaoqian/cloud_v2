@@ -10,6 +10,7 @@ import localservicelib as localservice
 import time
 import thread
 import os
+
 #status:cloud service start:flag=1;local service start:flag=0;default flag=-1.
 cloud_ip = os.environ['CLOUD_IP']
 cloud_service_port = 'http://'+cloud_ip+':5566'
@@ -24,10 +25,7 @@ dic = {} # dic:value;dic is exit_flag_name;vlaue is 0 or 1
 qos_level = 1 # qos leve:1--4
 def QosMonitor(cloud_ip):
 	global qos_level
-	last_score = 100
-	interface = 'wlan1'
 	while 1:#改为通过百分制评估qos等级 2018-3-25
-		#qos_level = bridge_client.Qos(cloud_ip)
 		[netspeed, rtt, rdst, cur_quality, Qt, Qr, Qs, Q] = bridge_client.QosWeight(cloud_ip)
 		qos_level = bridge_client.QosLevel(Q)
 def Switch(service,action):
@@ -40,7 +38,8 @@ def Switch(service,action):
 	exit_flag_name = service+'_exit_flag'
 	dic[exit_flag_name]=0
 	switch_flag = -1
-	thread.start_new_thread(QosMonitor,(cloud_ip,))
+	if service == "stereo_proc":#在计算服务是stereo_proc时，我们才启动qos监控,updated on 2018-11-20
+		thread.start_new_thread(QosMonitor,(cloud_ip,))
 	url = cloud_service_port + "/compute/" + service + "/" + action
 	while 1:
 		#initial the service
@@ -82,7 +81,7 @@ def handle_request(data):
 		if action == 'stop':
 			exit_flag_name = service+'_exit_flag'
 			dic[exit_flag_name] = 1
-		url=cloud_service_port+"/cloud_service/"+service+"/"+action
+		url=cloud_service_port+"/compute/"+service+"/"+action
 		bridge_client.cloud_service_request(url)
 	return 'received the service request'
 def bridge_server():

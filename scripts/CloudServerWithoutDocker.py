@@ -1,7 +1,8 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-created on 2018-5-24
-CloudROSServer.py目的将计算服务和存储服务合二为一，统一到一个服务器下，各自维护相应的URI.计算服务和存储服务的程序还各自放在原来的包。
+与CloudROSServer.py相比唯一不同之处就是计算节点没有运行在容器中。该程序是在CLoudROSServer.py基础上稍加修改的。所以包含了身份验证、服务查询、状态查询等预处理
+计算服务中涉及到的数据库还是用的CLoudROSServer.py中的，虽然也会涉及到获取容器镜像等操作，但是我们最终启动服务的操作是直接启动节点，不再是启动对应的容器。
 @author: ros
 """
 import flask
@@ -11,8 +12,9 @@ import MySQLdb as mdb
 import sys
 import time
 import IPy
+import signal
 
-services_list=['addition','stereo_proc','teleop','monitor']
+# services_list=['addition','stereo_proc','teleop','monitor']
 app = flask.Flask(__name__)
 if "CLOUD_IP" not in os.environ:
     print "Can't find environment variable CLOUD_IP."
@@ -20,12 +22,11 @@ if "CLOUD_IP" not in os.environ:
 #设置服务端口
 cloud_ip = os.environ['CLOUD_IP']
 port = 5566
+cloudros = None
 
 class CloudROS():
-    # 计算服务中设置的数据库：token:存储允许访问服务的ip地址；image:绑定了服务和容器镜像的信息，服务查询访问该数据库；usr_info存储访问者信息，
-    # 包括访问者的ip，访问的服务以及服务的状态；docker:当前运行的容器名称。
-    # 存储服务中设置的数据库：token:存储允许访问服务的ip地址；exo_sum:汇总外骨骼信息；exo_id：单一外骨骼信息
     def __init__(self):
+        signal.signal(signal.SIGINT, self.ExitFunction)#用于处理计算服务的中断异常
         #连接计算服务数据库,并创建游标
         self.conn = mdb.connect(host="127.0.0.1", user="root", db="CloudROS", passwd="ubuntu", charset="utf8")
         self.cur = self.conn.cursor()
@@ -46,15 +47,16 @@ class CloudROS():
                 if not is_service:#返回客户端服务不存在
                     return "service not exit!"
                 else:#对该用户申请的服务进行具体操作
-                    return self.ServiceOperation(usr_ip=usr_ip,service=service,action=action)
+                    return self.ComputeServiceOperation(usr_ip=usr_ip,service=service,action=action)
         #路由存储服务URI
         @app.route('/storage/<robotID>/<action>', methods=['POST'])
         def StoreServiceHandler(robotID,action):
-            token = flask.request.remote_addr
+            usr_ip = flask.request.remote_addr
+            token = usr_ip
             store_is_auth = self.IsAuth(token)  # 首先进行身份验证
             if not store_is_auth:  # 验证失败
                 return "Auth failed,the exo/monitor has no access to the cloud"
-            self.ROSNetworkConfig()
+            self.ROSNetworkConfig(usr_ip)
             if action == "store":
                 is_exo = self.IsExoInExoSum(robotID)  # 查看ExoSum中有没有请求的Exo
                 if not is_exo:  # 如果没有,创建表,并将该Exo信息插入到ExoSum中
@@ -80,7 +82,7 @@ class CloudROS():
         # threaded = True:开启app路由多线程并发,可以同时处理多个http请求，即路由函数可以同时执行
         # threaded = False:开启app路由单线程，一次只能处理一个http请求
 
-    #计算服务相关函数(计算服务docker容器中运行)
+    #计算服务相关函数（计算服务不在容器）
     def IsAuth(self,token):
         # 此处设置token为ip,判断ip处于的子网段是否在数据库CloudROS的token表中
         subnet = str((IPy.IP(token).make_net('255.255.255.0')))#找到ip在的网段ex:192.168.1.0/24
@@ -101,52 +103,55 @@ class CloudROS():
             return False
         else:
             return True
-    def ServiceOperation(self,usr_ip,service,action):
-        return_info = None
+    def ComputeServiceOperation(self,usr_ip,service,action):
         container = usr_ip +'_'+service  # 容器命名规则:该服务对应唯一的docker的标识名字
         image = self.GetImageByService(service) # 在数据库中根据service找到对应的镜像
-        is_usr = self.IsUsrinUsrInfo(usr_ip, service)  # 判断表usr_info中是否有该usr的数据,如果新请求者，添加该请求者的信息。usr_info包括了请求者，服务名称、服务状态等信息。
+        is_usr = self.IsUsrinUsrInfo(usr_ip, service)  # usr_info是动态表，判断表usr_info中是否有该usr的数据,如果新请求者，添加该请求者的信息。
+        # usr_info包括了请求者，服务名称、服务状态等信息。
         if not is_usr:  # 没有,则在表usr_info插入新的数据
             self.InsertUsrInfo(usr_ip, service, container, image)
-        status = self.GetServiceStatus(container) # 获取当前服务状态,即对应服务的容器是否处于运行状态
-        if action != "start" or action != "stop":
-            return_info =  action + " not permitted! action should be 'start' or 'stop' "
+        status = self.GetServiceStatus(usr_ip,service) # 获取当前服务状态
+        if action != 'start' and action != 'stop':
+            return action + " not permitted! action should be 'start' or 'stop' "
         if status == 'running' and action == 'start':
-            return_info =  "The service is running, start the service repeatly"
-        if status == 'running' and action == 'stop':#停止服务,关闭容器
-            os.system("sudo docker stop "+container)#应该判断是否停止成功?4.23
-            status = self.GetServiceStatus(container)
+            return "The service is running, start the service repeatly"
+        if status == 'running' and action == 'stop':#停止服务
+            os.system('sh ~/catkin_ws/src/cloud_v2/scripts/stop.sh ' + service)#应该判断是否停止成功?4.23
+            status = "stopped"
             self.UpdateUsrInfo(usr_ip,service,status)
-            return_info =  "the service:" + service + " stop sucessfully"
+            return "the service:" + service + " stop sucessfully"
         if status == 'stopped' and action == 'start':#开启容器服务；开启节点服务
             #thread.start_new_thread(self.StartContainer,(container,image,usr_ip))
-            Thd = Thread(target=self.StartContainer,args=(container,image,usr_ip))
+            Thd = Thread(target=self.StartService,args=(usr_ip,service))
             Thd.start()#应该添加判断服务是否开始成功?4.23
             time.sleep(1)
-            status = self.GetServiceStatus(container)#获取容器服务运行状态
+            status = "running"
             self.UpdateUsrInfo(usr_ip,service,status)
-            return_info = "the service:" + service + " run sucessfully"
+            return "the service:" + service + " run sucessfully"
         if status == 'stopped' and action == 'stop':
-            return_info = "The service is stopped,stop the same service repeatly"
+            return "The service is stopped,stop the same service repeatly"
         #每次成功的服务请求后,都要更新数据库:usr_info和docker
-        return return_info
-    def GetServiceStatus(self,container):
-        #判断服务的状态其实就是判断系统中是否有运行服务的docker容器
-        pipfile = os.popen("sudo docker ps -a -f name=" + container + ' | grep ' + container)
-        docker_ps = pipfile.read()
-        if not docker_ps:#如果为空
-            status = "stopped"
-        else:
-            if 'Exited' in docker_ps:
-                # 如果容器处于启动后又关闭的状态,先将其删除
-                os.system('sudo docker rm ' + container)
-                status = "stopped"
-            if 'Up' in docker_ps:
-                status = "running"
+
+    def GetServiceStatus(self,usr_ip,service):
+        #从usr_info中获取状态信息
+        self.cur.execute("select * from usr_info where usr_ip=%s and service=%s", (usr_ip, service))
+        result = self.cur.fetchall()  # 获取限制条件下的结果,默认返回数组
+        status = str(result[0][2])
         return status
-    def StartContainer(self,container,image,usr_ip):
-        ros_master_uri = 'http://'+usr_ip+':11311'
-        os.system("sudo docker run --name " + container + " " + image+" "+ros_master_uri)
+    def StartService(self,usr_ip,service):
+        self.ROSNetworkConfig(usr_ip)
+        if service == 'addition':
+            os.system('rosrun base_control addtwointserver.py')
+        elif service == 'stereo_proc':
+            os.system('roslaunch mycamera stereo_proc.launch')
+        elif service == 'teleop':
+            os.system("rosrun turtlesim turtle_teleop_key")
+        elif service == 'monitor':
+            os.system('rosrun rqt_plot rqt_plot')
+        elif service == "image_detect":  # updataed on 2018-11-14:添加第三方服务--图像识别归为计算服务
+            os.system('roslaunch mycamera image_detect.launch')
+        elif service == "object_track":
+            os.system('roslaunch mycamera object_tracker.launch')
     def GetImageByService(self, service):
         self.cur.execute("select * from image where service=%s", service)
         result = self.cur.fetchall()#获取限制条件下的结果,默认返回数组,在链接函数中加上参数cursorclass = MySQLdb.cursors.DictCursor,返回字典形式
@@ -197,14 +202,16 @@ class CloudROS():
                 return "Fetch Exo_" + robotID + " data"
         else:
             return action + " not permitted! for monitor,action=fetch;for exo,action=store"
-    def ROSNetworkConfig(self):
-        ros_master_ip = flask.request.remote_addr
-        ros_master_uri = 'http://' + ros_master_ip + ':11311'
+    def ROSNetworkConfig(self,usr_ip):
+        ros_master_uri = 'http://' + usr_ip + ':11311'
         os.environ['ROS_MASTER_URI'] = ros_master_uri
         os.environ['ROS_IP'] = cloud_ip
     def StoreData(self, robotID):
-        os.system('rosrun neu_wgg store_service.py '+robotID+" __name:=StoreService"+robotID)
+        os.system('rosrun neu_wgg store_service.py '+robotID+" __name:=StoreService_"+robotID)
     def FetchData(self, robotID):
-        os.system('rosrun neu_wgg fetch_service.py ' + robotID+" __name:=FetchService"+robotID)
+        os.system('rosrun neu_wgg fetch_service.py ' + robotID+" __name:=FetchService_"+robotID)
+    def ExitFunction(self,signalnum, frame):
+        self.cur.execute("truncate table usr_info")#发生中断异常，清楚服务端的用户信息
+        sys.exit(0)
 if __name__ == '__main__':
     cloudros = CloudROS()
