@@ -2,4 +2,7 @@ first commit 19-13
 third commit
 fourth commit
 fifth
+sixth`:wq
+
+wq
 second commit 19-19
